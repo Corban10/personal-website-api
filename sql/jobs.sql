@@ -1,4 +1,4 @@
-CREATE TABLE public.jobs
+CREATE TABLE "jobs"
 (
 	"id" serial NOT NULL UNIQUE PRIMARY KEY,
 	"company" varchar(50) NOT NULL,

@@ -1,4 +1,4 @@
-CREATE TABLE public.projects
+CREATE TABLE "projects"
 (
 	"id" serial NOT NULL UNIQUE PRIMARY KEY,
 	"description" text NOT NULL,
