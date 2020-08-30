@@ -25,7 +25,6 @@ class Job(models.Model):
 
 class Project(models.Model):
     description = models.TextField()
-    image = models.BinaryField(default=b"123")
     github = models.CharField(max_length=50)
     url = models.CharField(max_length=50)
     featured = models.BooleanField(default=False)
@@ -37,9 +36,12 @@ class Project(models.Model):
     def was_updated(self):
         return self.updated_at >= self.created_at 
 
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="./project")
+
 class BlogPost(models.Model):
     content = models.TextField()
-    image = models.BinaryField(default=b"123")
     slug = models.CharField(max_length=50)
     desc = models.TextField()
     date = models.DateField()
@@ -49,4 +51,8 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.desc
     def was_updated(self):
-        return self.updated_at >= self.created_at 
+        return self.updated_at >= self.created_at
+
+class BlogPostImage(models.Model):
+    blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="./blog")
