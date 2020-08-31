@@ -15,4 +15,6 @@ urlpatterns = [
     path('blog_posts_all/', views.blog_posts_all, name='blog_posts_all'),
     path('blog_posts_one/<int:id>/', views.blog_posts_one, name='blog_posts_one'),
     path('blog_posts_by_tag/<int:id>/', views.blog_posts_by_tag, name='blog_posts_by_tag')
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + 
