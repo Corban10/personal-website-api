@@ -11,6 +11,12 @@ class Category(models.Model):
     def was_updated(self):
         return self.updated_at >= self.created_at 
 
+class Skill(models.Model):
+    name = models.CharField(max_length=50)
+    icon = models.FileField(upload_to="./skill")
+    def __str__(self):
+        return self.name
+
 class Job(models.Model):
     company = models.CharField(max_length=50)
     position = models.CharField(max_length=50)
