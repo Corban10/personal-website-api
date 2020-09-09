@@ -13,7 +13,15 @@ class Category(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=50)
+    link = models.CharField(max_length=50, default="#")
     icon = models.FileField(upload_to="./skill")
+    def __str__(self):
+        return self.name
+
+class Social(models.Model):
+    name = models.CharField(max_length=50)
+    link = models.CharField(max_length=50, default="#")
+    icon = models.FileField(upload_to="./social")
     def __str__(self):
         return self.name
 
