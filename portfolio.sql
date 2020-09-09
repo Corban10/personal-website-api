@@ -9,18 +9,6 @@ CREATE TABLE "portfolio_category" (
   "updated_at" timestamp with time zone NOT NULL
 );
 --
--- Create model Job
---
-CREATE TABLE "portfolio_job" (
-  "id" serial NOT NULL PRIMARY KEY, 
-  "company" varchar(50) NOT NULL, 
-  "position" varchar(50) NOT NULL, 
-  "date_start" date NULL, 
-  "date_end" date NULL, 
-  "created_at" timestamp with time zone NOT NULL, 
-  "updated_at" timestamp with time zone NOT NULL
-);
---
 -- Create model Project
 --
 CREATE TABLE "portfolio_project" (

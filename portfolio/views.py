@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.core import serializers
 
-from .models import Category, Skill, Social, Job, Project, BlogPost
+from .models import Category, Skill, Social, Project, BlogPost
 
 
 def index(request):
@@ -22,14 +22,6 @@ def skills_all(request):
 
 def socials_all(request):
     data = serializers.serialize("json", Social.objects.all())
-    return HttpResponse(data)
-
-def jobs_all(request):
-    data = serializers.serialize("json", Job.objects.all())
-    return HttpResponse(data)
-
-def jobs_one(request, id):
-    data = serializers.serialize("json", [Job.objects.get(pk=id)])
     return HttpResponse(data)
 
 def projects_all(request):
