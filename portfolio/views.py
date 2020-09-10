@@ -101,3 +101,17 @@ def get_blog_images_json(blog_post):
         "updated_at": str(blog_post.updated_at),
         'images' : images
     }
+
+def email(request):
+    subject = 'Subject here'
+    message = 'Here is the message.'
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = ['corbanhirawani@gmail.com']
+    send_mail(
+        subject,
+        message,
+        from_email,
+        recipient_list,
+        fail_silently=False
+    )
+    return HttpResponse('')

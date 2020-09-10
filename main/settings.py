@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+from main.config import google_email
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -132,11 +133,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-from main.config import google_email
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = google_email['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = google_email['EMAIL_HOST_PASSWORD']
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = google_email['EMAIL_HOST_USER']
+# EMAIL_HOST_PASSWORD = google_email['EMAIL_HOST_PASSWORD']
+
+EMAIL_HOST: 'localhost'
+EMAIL_PORT: 25
+EMAIL_HOST_USER: google_email['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD: google_email['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS: False
+EMAIL_USE_SSL: False
