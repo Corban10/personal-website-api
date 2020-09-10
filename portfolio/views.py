@@ -1,9 +1,10 @@
 # from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 
 from .models import Category, Skill, Social, Project, ProjectImage, BlogPost, BlogPostImage
 
+import json
 
 def index(request):
     return HttpResponse("")
@@ -25,9 +26,29 @@ def socials_all(request):
     return HttpResponse(data)
 
 def projects_all(request):
-    # projects = serializers.serialize("json", Project.objects.prefetch_related('image'))
-    data = serializers.serialize("json", ProjectImage.objects.prefetch_related('project'))
+    data = json.dumps(list(map(lambda x: add_image_json(x), Project.objects.all())))
+    print(data)
     return HttpResponse(data)
+
+def add_image_json(project):
+    images = []
+    for image in list(ProjectImage.objects.filter(project=project)):
+        images.append({
+            'id' : image.id,
+            'image' : str(image.image)
+        })
+    return {
+        "id": project.id,
+        "title": project.title,
+        "description": project.description,
+        "github": project.github,
+        "url": project.url,
+        "show": project.show,
+        "date": str(project.date),
+        "created_at": str(project.created_at),
+        "updated_at": str(project.updated_at),
+        'images' : images
+    }
 
 def projects_one(request, id):
     data = serializers.serialize("json", [Project.objects.get(pk=id)])
