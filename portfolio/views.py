@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.core import serializers
 
-from .models import Category, Skill, Social, Project, BlogPost
+from .models import Category, Skill, Social, Project, ProjectImage, BlogPost, BlogPostImage
 
 
 def index(request):
@@ -25,7 +25,8 @@ def socials_all(request):
     return HttpResponse(data)
 
 def projects_all(request):
-    data = serializers.serialize("json", Project.objects.all())
+    # projects = serializers.serialize("json", Project.objects.prefetch_related('image'))
+    data = serializers.serialize("json", ProjectImage.objects.prefetch_related('project'))
     return HttpResponse(data)
 
 def projects_one(request, id):

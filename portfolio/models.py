@@ -26,10 +26,11 @@ class Social(models.Model):
         return self.name
 
 class Project(models.Model):
+    title = models.CharField(max_length=50)
     description = models.TextField()
-    github = models.CharField(max_length=50)
-    url = models.CharField(max_length=50)
-    featured = models.BooleanField(default=False)
+    github = models.CharField(max_length=50, blank=True, null=True)
+    url = models.CharField(max_length=50, blank=True, null=True)
+    show = models.BooleanField(default=False)
     date = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
