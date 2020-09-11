@@ -103,8 +103,8 @@ def get_blog_images_json(blog_post):
         'images' : images
     }
 
-from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt 
+# from django.views.decorators.csrf import csrf_exempt
+# @csrf_exempt 
 def email(request):
     if request.method == "POST":
         data = {

@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -134,7 +134,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = google_email['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = google_email['EMAIL_HOST_PASSWORD']
 EMAIL_USE_TLS = True
-# EMAIL_USE_SSL: True
 
 # Cookies
 # CSRF_COOKIE_SECURE = False
