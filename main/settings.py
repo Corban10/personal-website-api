@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware'
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ()
@@ -116,13 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Pacific/Auckland' # UTC
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -134,16 +128,15 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = google_email['EMAIL_HOST_USER']
-# EMAIL_HOST_PASSWORD = google_email['EMAIL_HOST_PASSWORD']
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = google_email['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = google_email['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL: True
 
-EMAIL_HOST: 'localhost'
-EMAIL_PORT: 25
-EMAIL_HOST_USER: google_email['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD: google_email['EMAIL_HOST_PASSWORD']
-EMAIL_USE_TLS: False
-EMAIL_USE_SSL: False
+# Cookies
+# CSRF_COOKIE_SECURE = False
+# CSRF_COOKIE_HTTPONLY = False
+# SESSION_COOKIE_SECURE = False

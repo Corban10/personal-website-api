@@ -1,4 +1,3 @@
-# Response imports
 from django.http import HttpResponse, JsonResponse
 
 # Json serializers
@@ -12,6 +11,8 @@ from django.conf import settings
 # Models
 from .models import Category, Skill, Social, Project, ProjectImage, BlogPost, BlogPostImage
 
+# Forms
+from .forms import ContactForm
 
 def index(request):
     return HttpResponse("")
@@ -102,16 +103,24 @@ def get_blog_images_json(blog_post):
         'images' : images
     }
 
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt 
 def email(request):
-    subject = 'Subject here'
-    message = 'Here is the message.'
-    from_email = settings.EMAIL_HOST_USER
-    recipient_list = ['corbanhirawani@gmail.com']
-    send_mail(
-        subject,
-        message,
-        from_email,
-        recipient_list,
-        fail_silently=False
-    )
-    return HttpResponse('')
+    if request.method == "POST":
+        data = {
+            'subject': "From: " + str(request.POST.get("name")),
+            'message': request.POST.get("message", ""),
+            'email': request.POST.get("email", "")
+        }
+        print(data)
+        form = ContactForm(data)
+        if form.is_valid():
+            send_mail(
+                data['subject'],
+                data['message'],
+                data['email'],
+                [settings.EMAIL_HOST_USER],
+                fail_silently=False
+            )
+            return HttpResponse('success')
+    return HttpResponse('fail')
